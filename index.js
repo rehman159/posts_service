@@ -1,9 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
+const cors = require("cors");
+
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
+// we used cors() inside express middleware to let browsers allow to different services that are running on different ports to communicate with each other
 const posts = {};
 app.get("/posts", (req, res) => {
   res.send(posts);
